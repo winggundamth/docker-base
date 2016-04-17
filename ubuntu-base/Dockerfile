@@ -1,16 +1,17 @@
 # Ubuntu base System
-# updates + fixes + rsyslog
+# updates, install python ready for Ansible, add some fixes
+# and configure rsyslog
 #
 # If you want to use apt-cacher-ng to speed up downloading packages
 # This need to run apt-cacher-ng container by these command before build first
 # docker run -d -p 172.17.0.1:3142:3142 --name=apt-cacher-ng \
-#   --hostname=apt-cacher-ng ---restart=unless-stopped \
+#   --hostname=apt-cacher-ng --restart=unless-stopped \
 #   winggundamth/apt-cacher-ng
 # and build with command
 # docker build --build-arg APT_CACHER_NG=true
 # Required Docker 1.9.0+ since ip address on docker0 has been changed
 
-FROM ubuntu:14.04
+FROM ubuntu:trusty-20160412
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
 
 # 1) Configure timezone, locale and fix environment
