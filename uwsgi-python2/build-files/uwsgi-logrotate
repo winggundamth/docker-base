@@ -1,0 +1,10 @@
+/var/log/uwsgi/*.log
+{
+    maxage 7
+    daily
+    missingok
+    notifempty
+    compress
+    delaycompress
+    copytruncate
+}
