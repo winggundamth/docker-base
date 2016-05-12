@@ -2,9 +2,9 @@
 #
 # PyPI server and packaging/testing/release tool
 
-FROM winggundamth/ubuntu-base:latest
+FROM winggundamth/ubuntu-base:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160412
+ENV FROM_BASE=trusty-20160503.1
 
 # 1) Install curl and python
 # 2) Install pip latest version

@@ -3,9 +3,9 @@
 # HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP
 # proxy server
 
-FROM winggundamth/ubuntu-base:latest
+FROM winggundamth/ubuntu-base:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160412
+ENV FROM_BASE=trusty-20160503.1
 
 # 1) Install Nginx
 # 2) Clean to reduce Docker Image size

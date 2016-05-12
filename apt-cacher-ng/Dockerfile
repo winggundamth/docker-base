@@ -2,9 +2,9 @@
 #
 # A caching proxy. Specialized for package files from Linux distributors.
 
-FROM winggundamth/ubuntu-base:latest
+FROM winggundamth/ubuntu-base:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160412
+ENV FROM_BASE=trusty-20160503.1
 
 # 1) Install apt-cacher-ng
 # 2) Clean to reduce Docker Image size

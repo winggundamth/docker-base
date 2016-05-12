@@ -2,9 +2,9 @@
 #
 # Ubuntu installed Ansible, Docker client, machine and compose
 
-FROM winggundamth/ubuntu-base:latest
+FROM winggundamth/ubuntu-base:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160412
+ENV FROM_BASE=trusty-20160503.1
 
 # 1) Install Ansible and necessary packages
 # 2) Download Docker client, machine and compose

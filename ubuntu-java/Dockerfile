@@ -1,8 +1,8 @@
 # Oracle Java on Ubuntu
 
-FROM winggundamth/ubuntu-base:latest
+FROM winggundamth/ubuntu-base:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160412
+ENV FROM_BASE=trusty-20160503.1
 
 # 1) Install Java and some necessary packages
 # 2) Clean to reduce Docker Image size

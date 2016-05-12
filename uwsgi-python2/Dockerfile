@@ -1,7 +1,8 @@
 # uWSGI with Python 2.7
 
-FROM winggundamth/ubuntu-base:latest
-MAINTAINER Jirayut Nimsaeng (Dear) <jirayut.n@kaidee.com>
+FROM winggundamth/ubuntu-base:trusty
+MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
+ENV FROM_BASE=trusty-20160503.1
 
 # 1) Update and install python and required packages to compile library
 # 2) Install pip latest version

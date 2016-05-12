@@ -1,8 +1,8 @@
 # Ubuntu with OpenSSH Server
 
-FROM winggundamth/ubuntu-base:latest
+FROM winggundamth/ubuntu-base:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160412
+ENV FROM_BASE=trusty-20160503.1
 
 # 1) Install OpenSSH and necessary packages
 # 2) Clean to reduce Docker Image size

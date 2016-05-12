@@ -2,9 +2,9 @@
 #
 # Collect, Enrich & Transport Data
 
-FROM winggundamth/ubuntu-java:latest
+FROM winggundamth/ubuntu-java:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160412
+ENV FROM_BASE=trusty-20160503.1
 
 # 1) Install Logstash
 # 2) Clean to reduce Docker Image size

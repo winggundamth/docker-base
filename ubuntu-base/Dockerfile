@@ -2,7 +2,7 @@
 #
 # Updates packages, install python, add some fixes and configure rsyslog
 
-FROM ubuntu:trusty-20160412
+FROM ubuntu:trusty-20160503.1
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
 
 # 1) Configure timezone, locale and fix environment
