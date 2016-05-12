@@ -14,7 +14,7 @@ RUN [ -n "$APT_CACHER_NG" ] && \
     apt-get install -y wget && \
     wget --no-check-certificate -c --header \
       "Cookie: oraclelicense=accept-securebackup-cookie" \
-      http://download.oracle.com/otn-pub/java/jdk/8u77-b03/jdk-8u77-linux-x64.tar.gz && \
+      http://download.oracle.com/otn-pub/java/jdk/8u91-b14/jdk-8u91-linux-x64.tar.gz && \
     mkdir -p /var/cache/oracle-jdk8-installer && \
     mv jdk-8*-linux-x64.tar.gz /var/cache/oracle-jdk8-installer && \
     echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu \

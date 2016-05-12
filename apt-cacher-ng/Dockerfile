@@ -2,7 +2,7 @@
 #
 # A caching proxy. Specialized for package files from Linux distributors.
 
-FROM winggundamth/ubuntu-base:latest
+FROM winggundamth/ubuntu-base:xenial
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
 ENV FROM_BASE=trusty-20160412
 

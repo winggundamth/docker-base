@@ -2,7 +2,7 @@
 #
 # Ubuntu installed Ansible, Docker client, machine and compose
 
-FROM winggundamth/ubuntu-base:latest
+FROM winggundamth/ubuntu-base:xenial
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
 ENV FROM_BASE=trusty-20160412
 
@@ -31,9 +31,9 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
     curl https://bootstrap.pypa.io/get-pip.py | python && \
     pip install boto docker-py && \
     wget -O /usr/local/bin/docker.tgz \
-      https://get.docker.com/builds/Linux/x86_64/docker-1.11.0.tgz && \
+      https://get.docker.com/builds/Linux/x86_64/docker-1.11.1.tgz && \
     wget -O /usr/local/bin/docker-compose \
-      https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` && \
+      https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` && \
     wget -O /usr/local/bin/docker-machine \
       https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-`uname -s`-`uname -m` && \
     tar xvfz /usr/local/bin/docker.tgz -C /usr/local/bin/ --strip=1 && \
