@@ -15,8 +15,7 @@ RUN [ -n "$APT_CACHER_NG" ] && \
       > /etc/apt/apt.conf.d/11proxy || true; \
     apt-get update && \
     apt-get install -y wget apt-transport-https && \
-    wget -qO - https://repos.influxdata.com/influxdb.key | \
-      sudo apt-key add - && \
+    wget -qO - https://repos.influxdata.com/influxdb.key | apt-key add - && \
     . /etc/lsb-release && \
     echo "deb https://repos.influxdata.com/$(echo $DISTRIB_ID | \
       tr '[:upper:]' '[:lower:]') ${DISTRIB_CODENAME} stable" \
@@ -29,5 +28,7 @@ RUN [ -n "$APT_CACHER_NG" ] && \
     rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/11proxy
 
 USER telegraf
-CMD ["/usr/bin/telegraf", "-pidfile", "/var/run/telegraf/telegraf.pid", "-config", "/etc/telegraf/telegraf.conf", "-config-directory", "/etc/telegraf/telegraf.d"]
+CMD ["/usr/bin/telegraf", "-pidfile", "/var/run/telegraf/telegraf.pid", \
+     "-config", "/etc/telegraf/telegraf.conf", "-config-directory", \
+     "/etc/telegraf/telegraf.d"]
 VOLUME ["/var/log", "/etc/telegraf"]

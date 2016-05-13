@@ -15,8 +15,7 @@ RUN [ -n "$APT_CACHER_NG" ] && \
       > /etc/apt/apt.conf.d/11proxy || true; \
     apt-get update && \
     apt-get install -y wget apt-transport-https && \
-    wget -qO - https://repos.influxdata.com/influxdb.key | \
-      sudo apt-key add - && \
+    wget -qO - https://repos.influxdata.com/influxdb.key | apt-key add - && \
     . /etc/lsb-release && \
     echo "deb https://repos.influxdata.com/$(echo $DISTRIB_ID | \
       tr '[:upper:]' '[:lower:]') ${DISTRIB_CODENAME} stable" \
@@ -29,6 +28,7 @@ RUN [ -n "$APT_CACHER_NG" ] && \
     rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/11proxy
 
 USER influxdb
-CMD ["/usr/bin/influxd", "-pidfile", "/var/run/influxdb/influxd.pid", "-config", "/etc/influxdb/influxdb.conf"]
+CMD ["/usr/bin/influxd", "-pidfile", "/var/run/influxdb/influxd.pid", \
+     "-config", "/etc/influxdb/influxdb.conf"]
 EXPOSE 8083 8086
 VOLUME ["/var/log", "/etc/influxdb"]
