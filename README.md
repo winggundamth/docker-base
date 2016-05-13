@@ -39,3 +39,9 @@ docker run -d -p 172.17.0.1:3141:3141 --name=devpi-server \
 ```
 
 Then when build you can use ```--build-arg DEVPI_SERVER=http://172.17.0.1:3141/root/pypi/+simple```
+
+## Update apt-cacher-ng and devpi-server container without losing your caching data
+You can use script ```update-aptcacher-devpi-container.sh``` script to update apt-cacher-ng and devpi-server container and not worry about losing your caching data by running command
+```bash
+./update-aptcacher-devpi-container.sh
+```
