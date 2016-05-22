@@ -3,7 +3,7 @@
 # HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP
 # proxy server
 
-FROM winggundamth/ubuntu-base:latest
+FROM winggundamth/ubuntu-base:xenial
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
 ENV FROM_BASE=trusty-20160412
 
