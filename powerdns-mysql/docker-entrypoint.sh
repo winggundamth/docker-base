@@ -16,16 +16,16 @@ if [ -z "$PDNS_DB_PASSWORD" ]; then
 fi
 
 # Configure variables
-if [ ! -z "$PDNS_DB_HOST" ]; then
+if [ "$PDNS_DB_HOST" ]; then
     PDNS_MYSQL_HOST="$PDNS_DB_HOST"
 fi
-if [ ! -z "$PDNS_DB_PORT" ]; then
+if [ "$PDNS_DB_PORT" ]; then
     PDNS_MYSQL_PORT="$PDNS_DB_PORT"
 fi
-if [ ! -z "$PDNS_DB_USERNAME" ]; then
+if [ "$PDNS_DB_USERNAME" ]; then
     PDNS_MYSQL_USERNAME="$PDNS_DB_USERNAME"
 fi
-if [ ! -z "$PDNS_DB_NAME" ]; then
+if [ "$PDNS_DB_NAME" ]; then
     PDNS_MYSQL_DBNAME="$PDNS_DB_NAME"
 fi
 
@@ -52,7 +52,7 @@ else
         $PDNS_CONF_PATH
 fi
 
-if [ ! -z "$PDNS_API_KEY" ]; then
+if [ "$PDNS_API_KEY" ]; then
     # Enable API
     sed -i \
         -e "s/^#\?\sapi=.*/api=yes/g" \
@@ -63,7 +63,7 @@ if [ ! -z "$PDNS_API_KEY" ]; then
         $PDNS_CONF_PATH
 fi
 
-if [ ! -z "$PDNS_WEBSERVER_ALLOW_FROM" ]; then
+if [ "$PDNS_WEBSERVER_ALLOW_FROM" ]; then
     sed -i \
         "s/^#\?\swebserver-allow-from=.*/webserver-allow-from=$PDNS_WEBSERVER_ALLOW_FROM/g" \
         $PDNS_CONF_PATH
