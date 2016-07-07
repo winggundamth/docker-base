@@ -49,8 +49,12 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
     rm -rf /usr/lib/x86_64-linux-gnu/libfakeroot /var/lib/apt/lists/* \
       /etc/apt/apt.conf.d/11proxy /root/.cache /root/.pip
 
+# 1) Copy Docker entrypoint script
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+
 USER $APP_USER
 WORKDIR $APP_PATH
-CMD python create_db.py && python run.py
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["python", "run.py"]
 EXPOSE 9393
 VOLUME ["/var/log"]
