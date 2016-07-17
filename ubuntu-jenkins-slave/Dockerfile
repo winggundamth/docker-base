@@ -2,7 +2,7 @@
 
 FROM winggundamth/ubuntu-java:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160503.1
+ENV FROM_BASE=trusty-20160624
 
 # 1) Install Git, Ansible, OpenSSH and necessary packages
 # 2) Download Docker client, machine and compose

@@ -4,7 +4,7 @@
 
 FROM winggundamth/ubuntu-base:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160503.1
+ENV FROM_BASE=trusty-20160624
 
 # 1) Install Grafana as describe here
 #    http://docs.grafana.org/installation/debian/

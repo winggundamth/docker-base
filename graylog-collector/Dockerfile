@@ -5,7 +5,7 @@
 
 FROM winggundamth/ubuntu-java:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160503.1
+ENV FROM_BASE=trusty-20160624
 
 # 1) Install Graylog2 Collector
 # 2) Copy initial collector.conf file

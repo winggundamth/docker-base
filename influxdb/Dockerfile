@@ -4,7 +4,7 @@
 
 FROM winggundamth/ubuntu-base:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160503.1
+ENV FROM_BASE=trusty-20160624
 
 # 1) Install InfluxDB as describe here
 #    https://docs.influxdata.com/influxdb/v0.13/introduction/installation/

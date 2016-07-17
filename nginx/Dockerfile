@@ -5,7 +5,7 @@
 
 FROM winggundamth/ubuntu-base:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160503.1
+ENV FROM_BASE=trusty-20160624
 
 # 1) Install Nginx
 # 2) Clean to reduce Docker Image size

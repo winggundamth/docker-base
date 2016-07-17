@@ -2,7 +2,7 @@
 
 FROM winggundamth/ubuntu-base:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160503.1
+ENV FROM_BASE=trusty-20160624
 
 # 1) Update and install python and required packages to compile library
 # 2) Install pip latest version

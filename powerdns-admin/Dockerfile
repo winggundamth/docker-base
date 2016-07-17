@@ -3,7 +3,7 @@
 
 FROM winggundamth/ubuntu-base:trusty
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160503.1
+ENV FROM_BASE=trusty-20160624
 
 # 1) Add user web to run PowerDNS-Admin
 # 2) Update and install python and required packages to compile library
