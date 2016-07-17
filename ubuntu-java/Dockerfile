@@ -23,9 +23,9 @@ RUN [ -n "$APT_CACHER_NG" ] && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 && \
     apt-get update && \
     echo debconf shared/accepted-oracle-license-v1-1 select true \
-      | sudo debconf-set-selections && \
+      | debconf-set-selections && \
     echo debconf shared/accepted-oracle-license-v1-1 seen true \
-      | sudo debconf-set-selections && \
+      | debconf-set-selections && \
     apt-get install -y oracle-java8-installer && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/11proxy \
