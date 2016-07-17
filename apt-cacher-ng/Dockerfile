@@ -4,7 +4,7 @@
 
 FROM winggundamth/ubuntu-base:xenial
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160412
+ENV FROM_BASE=xenial-20160706
 
 # 1) Install apt-cacher-ng
 # 2) Clean to reduce Docker Image size

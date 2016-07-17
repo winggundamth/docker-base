@@ -5,7 +5,7 @@
 
 FROM winggundamth/ubuntu-base:xenial
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160412
+ENV FROM_BASE=xenial-20160706
 
 # 1) Install Nginx
 # 2) Install Python because it required by Ansible

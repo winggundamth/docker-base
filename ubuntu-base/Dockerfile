@@ -2,7 +2,7 @@
 #
 # Updates packages and configure
 
-FROM ubuntu:xenial-20160503
+FROM ubuntu:xenial-20160706
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
 
 # 1) Add some useful environment

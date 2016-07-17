@@ -4,7 +4,7 @@
 
 FROM winggundamth/ubuntu-base:xenial
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160412
+ENV FROM_BASE=xenial-20160706
 
 # 1) Install Ansible and necessary packages
 # 2) Download Docker client, machine and compose
@@ -31,7 +31,7 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
     curl https://bootstrap.pypa.io/get-pip.py | python && \
     pip install boto docker-py && \
     wget -O /usr/local/bin/docker.tgz \
-      https://get.docker.com/builds/Linux/x86_64/docker-1.11.1.tgz && \
+      https://get.docker.com/builds/Linux/x86_64/docker-1.11.2.tgz && \
     wget -O /usr/local/bin/docker-compose \
       https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` && \
     wget -O /usr/local/bin/docker-machine \

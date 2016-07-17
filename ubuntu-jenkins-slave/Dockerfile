@@ -1,8 +1,8 @@
 # Ubuntu ready to be Jenkins Slave
 
-FROM winggundamth/ubuntu-java:latest
+FROM winggundamth/ubuntu-java:xenial
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160412
+ENV FROM_BASE=xenial-20160706
 
 # 1) Install Git, Ansible, OpenSSH and necessary packages
 # 2) Download Docker client, machine and compose

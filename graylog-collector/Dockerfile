@@ -3,9 +3,9 @@
 # Lightweight Java application that allows you to forward data from log files
 # to a Graylog cluster.
 
-FROM winggundamth/ubuntu-java:latest
+FROM winggundamth/ubuntu-java:xenial
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=trusty-20160412
+ENV FROM_BASE=xenial-20160706
 
 # 1) Install Graylog2 Collector
 # 2) Copy initial collector.conf file
