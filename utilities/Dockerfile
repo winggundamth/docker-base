@@ -52,7 +52,7 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
       libquadmath0 libstdc++-5-dev libtsan0 libubsan0 libxtables11 \
       linux-libc-dev make manpages manpages-dev netbase patch perl \
       perl-modules-5.22 rename xz-utils python-dev libssl-dev libffi-dev && \
-    apt-get install -y python curl wget git telnet ping dnsutils && \
+    apt-get install -y python curl wget git telnet iputils-ping dnsutils && \
     apt-get -y autoremove && \
     apt-get clean && \
     rm -rf /usr/lib/x86_64-linux-gnu/libfakeroot /var/lib/apt/lists/* \
