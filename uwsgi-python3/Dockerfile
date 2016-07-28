@@ -44,9 +44,11 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
 # 1) Add user web and prepare .ssh directory
 # 2) Copy initial uwsgi ini file
 # 3) Add start.py as first process
-ENV UWSGI_USER=web UWSGI_HOME=/home/$UWSGI_USER
+ENV UWSGI_USER=web
+ENV HOME=/home/$UWSGI_USER UWSGI_HOME=/home/$UWSGI_USER
 COPY build-files /build-files
-RUN useradd -s /bin/bash -d $UWSGI_HOME -m $UWSGI_USER && \
+RUN useradd --shell /bin/bash --home-dir $UWSGI_HOME --create-home \
+      --base-dir $UWSGI_HOME $UWSGI_USER && \
     mkdir -p $UWSGI_HOME/.ssh && \
     chmod 700 /$UWSGI_HOME/.ssh && \
     chown $UWSGI_USER:$UWSGI_USER $UWSGI_HOME/.ssh && \
@@ -58,4 +60,5 @@ VOLUME ["/var/log"]
 WORKDIR $UWSGI_HOME
 USER $UWSGI_USER
 EXPOSE 5000
-ENTRYPOINT ["uwsgi", "/etc/uwsgi.ini"]
+ENTRYPOINT ["uwsgi"]
+CMD ["/etc/uwsgi.ini"]
