@@ -21,7 +21,7 @@ trusted-host = \
 $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
 " >> ~/.pip/pip.conf || true; \
     apt-get update && \
-    apt-get install -y curl git python3 libpython3.5 python3-dev \
+    apt-get install -y curl python3 libpython3.5 python3-dev \
       build-essential && \
     curl https://bootstrap.pypa.io/get-pip.py | python3 && \
     pip install uwsgi && \
@@ -37,6 +37,7 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
       manpages manpages-dev netbase patch perl perl-modules-5.22 rename \
       xz-utils curl python3-dev && \
     apt-get -y autoremove && \
+    apt-get install -y git && \
     apt-get clean && \
     rm -rf /usr/lib/x86_64-linux-gnu/libfakeroot /var/lib/apt/lists/* \
       /etc/apt/apt.conf.d/11proxy /root/.cache /root/.pip
