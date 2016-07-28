@@ -11,7 +11,7 @@ All my base Dockerfile come with build argument that can speed up local build
 When build you just specify ```--build-arg``` to your own apt-cacher-ng and devpi-server
 ```bash
 # Building uwsgi-python2
-docker build --build-arg APT_CACHER_NG=https://apt-cacher-ng.example.com \
+docker build --build-arg APT_CACHER_NG=http://apt-cacher-ng.example.com:3142 \
   --build-arg DEVPI_SERVER=https://devpi.example.com/root/pypi/+simple \
   -t winggundamth/uwsgi-python2 uwsgi-python2
 ```
