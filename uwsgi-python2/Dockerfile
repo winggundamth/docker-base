@@ -21,7 +21,7 @@ trusted-host = \
 $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
 " >> ~/.pip/pip.conf || true; \
     apt-get update && \
-    apt-get install -y curl git python libpython2.7 python-dev \
+    apt-get install -y curl python libpython2.7 python-dev \
       build-essential && \
     curl https://bootstrap.pypa.io/get-pip.py | python && \
     pip install uwsgi && \
@@ -34,6 +34,7 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
       libstdc++-4.8-dev libtimedate-perl libtsan0 linux-libc-dev make manpages \
       manpages-dev patch xz-utils curl python-dev && \
     apt-get -y autoremove && \
+    apt-get install -y git && \
     apt-get clean && \
     rm -rf /usr/lib/x86_64-linux-gnu/libfakeroot /var/lib/apt/lists/* \
       /etc/apt/apt.conf.d/11proxy /root/.cache /root/.pip
@@ -41,16 +42,23 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
 CMD ["/start.py"]
 EXPOSE 5000
 
-# 1) Copy initial uwsgi ini file
-# 2) Prepare log and logrotate for uwsgi log file
-# 3) Add start.py as first process
+# 1) Add user web and prepare .ssh directory
+# 2) Copy initial uwsgi ini file
+ENV WEB_USER=web
+ENV HOME=/home/$WEB_USER WEB_HOME=/home/$WEB_USER
 COPY build-files /build-files
-RUN mv /build-files/uwsgi.ini /etc/uwsgi.ini && \
+RUN useradd --shell /bin/bash --home-dir $WEB_HOME --create-home \
+      --base-dir $WEB_HOME $WEB_USER && \
+    mkdir -p $WEB_HOME/.ssh && \
+    chmod 700 /$WEB_HOME/.ssh && \
+    chown $WEB_USER:$WEB_USER $WEB_HOME/.ssh && \
+    mv /build-files/uwsgi.ini /etc/uwsgi.ini && \
     mkdir -p /var/log/uwsgi && \
-    mv /build-files/uwsgi-logrotate /etc/logrotate.d/uwsgi && \
-    mv /build-files/start.py /start.py && \
-    chown root:root /start.py && \
-    chmod 700 /start.py && \
     rm -rf /build-files
 
 VOLUME ["/var/log"]
+WORKDIR $WEB_HOME
+USER $WEB_USER
+EXPOSE 5000
+ENTRYPOINT ["uwsgi"]
+CMD ["/etc/uwsgi.ini"]
