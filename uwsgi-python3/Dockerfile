@@ -44,7 +44,6 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
 
 # 1) Add user web and prepare .ssh directory
 # 2) Copy initial uwsgi ini file
-# 3) Add start.py as first process
 ENV WEB_USER=web
 ENV HOME=/home/$WEB_USER WEB_HOME=/home/$WEB_USER
 COPY build-files /build-files
