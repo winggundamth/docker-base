@@ -30,7 +30,7 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
       gcc-4.8 libalgorithm-diff-perl libalgorithm-diff-xs-perl libgcc-4.8-dev \
       libalgorithm-merge-perl libasan0 libatomic1 libc-dev-bin libc6-dev \
       libcloog-isl4 libdpkg-perl libfakeroot libfile-fcntllock-perl \
-      libgmp10 libgomp1 libitm1 libmpc3 libmpfr4 libquadmath0 \
+      libgmp10 libgomp1 libisl10 libitm1 libmpc3 libmpfr4 libquadmath0 \
       libstdc++-4.8-dev libtimedate-perl libtsan0 linux-libc-dev make manpages \
       manpages-dev patch xz-utils curl python-dev && \
     apt-get -y autoremove && \
