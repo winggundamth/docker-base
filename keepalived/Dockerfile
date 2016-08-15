@@ -18,12 +18,12 @@ ARG APT_CACHER_NG
 RUN [ -n "$APT_CACHER_NG" ] && \
       echo "Acquire::http::Proxy \"$APT_CACHER_NG\";" \
       > /etc/apt/apt.conf.d/11proxy || true; \
-    echo "deb http://ppa.launchpad.net/keepalived/daily/ubuntu \
+    echo "deb http://ppa.launchpad.net/keepalived/stable/ubuntu \
       $(lsb_release -cs) main" \
       > /etc/apt/sources.list.d/keepalived-$(lsb_release -cs).list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7C33BDC6 && \
     apt-get update && \
-    apt-get install -y keepalived=1:1.2.19-0~realv1.2.23+482~ubuntu16.04.1 && \
+    apt-get install -y keepalived && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/11proxy
 
