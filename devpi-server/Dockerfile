@@ -4,7 +4,7 @@
 
 FROM winggundamth/ubuntu-base:xenial
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=xenial-20160706
+ENV FROM_BASE=xenial-20160809
 
 # 1) Install curl and python
 # 2) Install pip latest version

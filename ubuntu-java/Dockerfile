@@ -2,7 +2,7 @@
 
 FROM winggundamth/ubuntu-base:xenial
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=xenial-20160706
+ENV FROM_BASE=xenial-20160809
 
 # 1) Install Java and some necessary packages
 # 2) Clean to reduce Docker Image size
@@ -14,7 +14,7 @@ RUN [ -n "$APT_CACHER_NG" ] && \
     apt-get install -y wget && \
     wget --no-check-certificate -c --header \
       "Cookie: oraclelicense=accept-securebackup-cookie" \
-      http://download.oracle.com/otn-pub/java/jdk/8u91-b14/jdk-8u91-linux-x64.tar.gz && \
+      http://download.oracle.com/otn-pub/java/jdk/8u101-b13/jdk-8u101-linux-x64.tar.gz && \
     mkdir -p /var/cache/oracle-jdk8-installer && \
     mv jdk-8*-linux-x64.tar.gz /var/cache/oracle-jdk8-installer && \
     echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu \

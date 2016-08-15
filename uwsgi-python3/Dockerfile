@@ -2,7 +2,7 @@
 
 FROM winggundamth/ubuntu-base:xenial
 MAINTAINER Jirayut Nimsaeng (Dear) <jirayut.n@kaidee.com>
-ENV FROM_BASE=xenial-20160706
+ENV FROM_BASE=xenial-20160809
 
 # 1) Update and install python and required packages to compile library
 # 2) Install pip latest version

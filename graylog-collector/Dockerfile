@@ -5,7 +5,7 @@
 
 FROM winggundamth/ubuntu-java:xenial
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=xenial-20160706
+ENV FROM_BASE=xenial-20160809
 
 # 1) Install Graylog2 Collector
 # 2) Copy initial collector.conf file

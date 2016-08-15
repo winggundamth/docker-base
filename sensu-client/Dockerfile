@@ -5,7 +5,7 @@
 
 FROM winggundamth/sensu-base:xenial
 MAINTAINER Jirayut Nimsaeng <w [at] winginfotech.net>
-ENV FROM_BASE=xenial-20160706
+ENV FROM_BASE=xenial-20160809
 
 # 1) Install required package for Sensu Client Plugins
 # 2) Install Sensu Client Plugins
