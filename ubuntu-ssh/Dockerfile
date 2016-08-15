@@ -12,8 +12,6 @@ RUN [ -n "$APT_CACHER_NG" ] && \
       > /etc/apt/apt.conf.d/11proxy || true; \
     apt-get update && \
     apt-get install -y openssh-server vim tmux rsync byobu && \
-    sed -i "/env_reset/a \Defaults        env_keep+=SSH_AUTH_SOCK" \
-      /etc/sudoers && \
     sed -i 's/required     pam_loginuid.so/optional     pam_loginuid.so/g' \
       /etc/pam.d/sshd && \
     echo 'export LC_ALL=en_US.UTF-8' > /root/.bash_profile && \
