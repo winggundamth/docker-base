@@ -42,18 +42,9 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
     tar xvfz /usr/local/bin/docker.tgz -C /usr/local/bin/ --strip=1 && \
     chmod +x /usr/local/bin/docker-compose /usr/local/bin/docker-machine && \
     apt-get remove --purge --auto-remove -y \
-      binutils build-essential bzip2 cpp cpp-5 dpkg-dev fakeroot g++ g++-5 gcc \
-      gcc-5 ifupdown iproute2 isc-dhcp-client isc-dhcp-common \
-      libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl \
-      libasan2 libatm1 libatomic1 libc-dev-bin libc6-dev libcc1-0 libcilkrts5 \
-      libdns-export162 libdpkg-perl libfakeroot libfile-fcntllock-perl \
-      libgcc-5-dev libgdbm3 libgmp10 libgomp1 libisc-export160 libisl15 \
-      libitm1 liblsan0 libmnl0 libmpc3 libmpfr4 libmpx0 libperl5.22 \
-      libquadmath0 libstdc++-5-dev libtsan0 libubsan0 libxtables11 \
-      linux-libc-dev make manpages manpages-dev netbase patch perl \
-      perl-modules-5.22 rename xz-utils python-dev libssl-dev libffi-dev && \
-    apt-get install -y python curl wget git telnet iputils-ping dnsutils \
-      vim tmux rsync byobu && \
+      build-essential ifupdown iproute2 isc-dhcp-client isc-dhcp-common \
+      libatm1 libisc-export160 libmnl0 libxtables11 manpages netbase \
+      libssl-dev libffi-dev && \
     apt-get -y autoremove && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/11proxy /root/.cache \

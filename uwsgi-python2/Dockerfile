@@ -21,20 +21,14 @@ trusted-host = \
 $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
 " >> ~/.pip/pip.conf || true; \
     apt-get update && \
-    apt-get install -y curl python libpython2.7 python-dev \
-      build-essential && \
+    apt-get install -y curl python libpython2.7 python-dev build-essential && \
     curl https://bootstrap.pypa.io/get-pip.py | python && \
     pip install uwsgi && \
     apt-get remove --purge --auto-remove -y \
-      binutils build-essential cpp cpp-4.8 dpkg-dev fakeroot g++ g++-4.8 gcc \
-      gcc-4.8 libalgorithm-diff-perl libalgorithm-diff-xs-perl libgcc-4.8-dev \
-      libalgorithm-merge-perl libasan0 libatomic1 libc-dev-bin libc6-dev \
-      libcloog-isl4 libdpkg-perl libfakeroot libfile-fcntllock-perl \
-      libgmp10 libgomp1 libitm1 libmpc3 libmpfr4 libquadmath0 \
-      libstdc++-4.8-dev libtimedate-perl libtsan0 linux-libc-dev make manpages \
-      manpages-dev patch xz-utils curl python-dev && \
+      build-essential ifupdown iproute2 isc-dhcp-client isc-dhcp-common \
+      libatm1 libisc-export160 libmnl0 libxtables11 manpages netbase \
+      curl python-dev && \
     apt-get -y autoremove && \
-    apt-get install -y git && \
     apt-get clean && \
     rm -rf /usr/lib/x86_64-linux-gnu/libfakeroot /var/lib/apt/lists/* \
       /etc/apt/apt.conf.d/11proxy /root/.cache /root/.pip

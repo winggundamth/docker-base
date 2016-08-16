@@ -22,13 +22,9 @@ RUN [ -n "$APT_CACHER_NG" ] && \
       mysql,http,load-checks,mongodb,docker,network-checks,redis, \
       filesystem-checks,execute && \
     apt-get remove --purge --auto-remove -y \
-      binutils build-essential cpp cpp-4.8 dpkg-dev fakeroot g++ g++-4.8 gcc \
-      gcc-4.8 libalgorithm-diff-perl libalgorithm-diff-xs-perl libgcc-4.8-dev \
-      libalgorithm-merge-perl libasan0 libatomic1 libc-dev-bin libc6-dev \
-      libcloog-isl4 libdpkg-perl libfakeroot libfile-fcntllock-perl \
-      libgmp10 libgomp1 libitm1 libmpc3 libmpfr4 libquadmath0 \
-      libstdc++-4.8-dev libtimedate-perl libtsan0 linux-libc-dev make manpages \
-      manpages-dev patch xz-utils libmysqlclient-dev libsasl2-dev && \
+      build-essential ifupdown iproute2 isc-dhcp-client isc-dhcp-common \
+      libatm1 libisc-export160 libmnl0 libxtables11 manpages netbase \
+      libmysqlclient-dev libsasl2-dev && \
     apt-get -y autoremove && \
     apt-get clean && \
     rm -rf /usr/lib/x86_64-linux-gnu/libfakeroot /var/lib/apt/lists/* \

@@ -23,21 +23,9 @@ RUN [ -n "$APT_CACHER_NG" ] && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/11proxy
 
-CMD ["/start.sh"]
-EXPOSE 80 443
-
 # 1) Config Nginx not to run as daemon but foreground instead
-# 2) Config Logrotate for Nginx
-# 3) Add start.sh as first process
-COPY build-files /build-files
-RUN sed -i "/pid .*/a \daemon off;" /etc/nginx/nginx.conf && \
-    sed -i 's/\trotate .*/\trotate 7/g' /etc/logrotate.d/nginx && \
-    sed -i 's/weekly/daily/g' /etc/logrotate.d/nginx && \
-    sed -i 's/invoke-rc.d nginx rotate/service nginx rotate/g' \
-      /etc/logrotate.d/nginx && \
-    mv /build-files/start.sh /start.sh && \
-    chown root:root /start.sh && \
-    chmod 700 /start.sh && \
-    rm -rf /build-files
+RUN sed -i "/pid .*/a \daemon off;" /etc/nginx/nginx.conf
 
+EXPOSE 80 443
 VOLUME ["/var/log", "/etc/nginx", "/etc/ssl/private"]
+CMD ["nginx"]

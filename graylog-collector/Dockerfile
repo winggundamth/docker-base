@@ -24,7 +24,7 @@ RUN [ -n "$APT_CACHER_NG" ] && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/11proxy *.deb \
       /etc/graylog/collector/collector-id
-COPY build-files/collector.conf /etc/graylog/collector/collector.conf
+ADD build-files/collector.conf /etc/graylog/collector/collector.conf
 
 CMD ["/usr/share/graylog-collector/bin/graylog-collector", "run", "-f", \
      "/etc/graylog/collector/collector.conf"]
