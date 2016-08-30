@@ -34,11 +34,11 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
     apt-get install -y libssl-dev libffi-dev && \
     pip install ansible boto docker-py dnspython shade && \
     wget -O /usr/local/bin/docker.tgz \
-      https://get.docker.com/builds/Linux/x86_64/docker-1.12.0.tgz && \
+      https://get.docker.com/builds/Linux/x86_64/docker-1.12.1.tgz && \
     wget -O /usr/local/bin/docker-compose \
       https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` && \
     wget -O /usr/local/bin/docker-machine \
-      https://github.com/docker/machine/releases/download/v0.8.0/docker-machine-`uname -s`-`uname -m` && \
+      https://github.com/docker/machine/releases/download/v0.8.1/docker-machine-`uname -s`-`uname -m` && \
     tar xvfz /usr/local/bin/docker.tgz -C /usr/local/bin/ --strip=1 && \
     chmod +x /usr/local/bin/docker-compose /usr/local/bin/docker-machine && \
     apt-get remove --purge --auto-remove -y \
