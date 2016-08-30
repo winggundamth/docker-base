@@ -29,7 +29,7 @@ trusted-host = \
 $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
 " >> ~/.pip/pip.conf || true; \
     apt-get update && \
-    apt-get install -y python python-dev curl wget git build-essential && \
+    apt-get install -y vim socat python python-dev curl wget git build-essential sshpass && \
     curl https://bootstrap.pypa.io/get-pip.py | python && \
     apt-get install -y libssl-dev libffi-dev && \
     pip install ansible boto docker-py dnspython shade && \
