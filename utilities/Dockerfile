@@ -15,6 +15,8 @@ ENV FROM_BASE=xenial-20160809
 # 3) Install Shade
 # 4) Clean to reduce size of Docker Image
 # 5) Install utility commands
+# 6) Work around Ansible doesn't play very well with overlayfs
+#    https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1214500
 ARG APT_CACHER_NG
 ARG DEVPI_SERVER
 ENV ANSIBLE_HOST_KEY_CHECKING=False
@@ -48,4 +50,7 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
     apt-get -y autoremove && \
     apt-get clean && \
     rm -rf /usr/lib/x86_64-linux-gnu/libfakeroot /var/lib/apt/lists/* \
-      /etc/apt/apt.conf.d/11proxy /root/.cache /root/.pip
+      /etc/apt/apt.conf.d/11proxy /root/.cache /root/.pip && \
+    mkdir -p /etc/ansible && \
+    echo '[ssh_connection]' >> /etc/ansible/ansible.cfg && \
+    echo 'ssh_args =' >> /etc/ansible/ansible.cfg

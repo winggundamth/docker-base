@@ -56,6 +56,8 @@ EXPOSE 22
 # 1) Configure OpenSSH
 # 2) Create jenkins user
 # 3) Prepare authorized_keys file for ssh
+# 4) Work around Ansible doesn't play very well with overlayfs
+#    https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1214500
 ENV JENKINS_HOME=/var/jenkins
 RUN sed -i 's/required     pam_loginuid.so/optional     pam_loginuid.so/g' \
       /etc/pam.d/sshd && \
@@ -66,4 +68,6 @@ RUN sed -i 's/required     pam_loginuid.so/optional     pam_loginuid.so/g' \
     chown -R root:root /root/.ssh && \
     chown -R jenkins:jenkins $JENKINS_HOME/.ssh && \
     chmod 700 $JENKINS_HOME/.ssh /root/.ssh && \
-    chmod 600 $JENKINS_HOME/.ssh/authorized_keys /root/.ssh/authorized_keys
+    chmod 600 $JENKINS_HOME/.ssh/authorized_keys /root/.ssh/authorized_keys && \
+    echo '[ssh_connection]' >> $JENKINS_HOME/.ansible.cfg && \
+    echo 'ssh_args =' >> $JENKINS_HOME/.ansible.cfg
