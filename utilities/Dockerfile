@@ -15,11 +15,10 @@ ENV FROM_BASE=xenial-20160809
 # 3) Install Shade
 # 4) Clean to reduce size of Docker Image
 # 5) Install utility commands
-# 6) Work around Ansible doesn't play very well with overlayfs
-#    https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1214500
 ARG APT_CACHER_NG
 ARG DEVPI_SERVER
 ENV ANSIBLE_HOST_KEY_CHECKING=False
+COPY files/python-requirements.txt /root/python-requirements.txt
 RUN [ -n "$APT_CACHER_NG" ] && \
       echo "Acquire::http::Proxy \"$APT_CACHER_NG\";" \
       > /etc/apt/apt.conf.d/11proxy || true; \
@@ -34,7 +33,7 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
     apt-get install -y vim socat python python-dev curl wget git build-essential sshpass && \
     curl https://bootstrap.pypa.io/get-pip.py | python && \
     apt-get install -y libssl-dev libffi-dev && \
-    pip install ansible boto docker-py dnspython shade && \
+    pip install -r /root/python-requirements.txt && \
     wget -O /usr/local/bin/docker.tgz \
       https://get.docker.com/builds/Linux/x86_64/docker-1.12.1.tgz && \
     wget -O /usr/local/bin/docker-compose \
@@ -50,7 +49,29 @@ $(echo $DEVPI_SERVER | awk -F/ '{print $3}' | awk -F: '{print $1}')\n\
     apt-get -y autoremove && \
     apt-get clean && \
     rm -rf /usr/lib/x86_64-linux-gnu/libfakeroot /var/lib/apt/lists/* \
-      /etc/apt/apt.conf.d/11proxy /root/.cache /root/.pip && \
-    mkdir -p /etc/ansible && \
+      /etc/apt/apt.conf.d/11proxy /root/.cache /root/.pip \
+      /root/python-requirements.txt
+
+# 1) Work around Ansible doesn't play very well with overlayfs
+#    https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1214500
+# 2) Patch latest ansible docker module
+#    https://github.com/ansible/ansible/issues/16865
+RUN mkdir -p /etc/ansible && \
     echo '[ssh_connection]' >> /etc/ansible/ansible.cfg && \
-    echo 'ssh_args =' >> /etc/ansible/ansible.cfg
+    echo 'ssh_args =' >> /etc/ansible/ansible.cfg && \
+    PYTHON_LIB_PATH=$(echo 'import os; from ansible.playbook import play_context; print os.path.dirname(play_context.__file__);' | python -) && \
+    rm $PYTHON_LIB_PATH/play_context.pyc && \
+    sed -i '417,418 s/^/#/' \
+      $PYTHON_LIB_PATH/play_context.py && \
+    PYTHON_LIB_PATH=$(echo 'import os; from ansible.plugins.connection import docker; print os.path.dirname(docker.__file__);' | python -) && \
+    rm $PYTHON_LIB_PATH/docker.pyc && \
+    wget -O $PYTHON_LIB_PATH/docker.py \
+      https://raw.githubusercontent.com/ansible/ansible/a4785c2691290df6047da5294632a8c428e67476/lib/ansible/plugins/connection/docker.py && \
+    PYTHON_LIB_PATH=$(echo 'import os; from ansible.module_utils import docker_common; print os.path.dirname(docker_common.__file__);' | python -) && \
+    rm $PYTHON_LIB_PATH/docker_common.pyc && \
+    wget -O $PYTHON_LIB_PATH/docker_common.py \
+      https://raw.githubusercontent.com/ansible/ansible/39aa740531f171a557e8604babd493793d63323e/lib/ansible/module_utils/docker_common.py && \
+    PYTHON_LIB_PATH=$(echo 'import os; from ansible.modules.core.cloud.docker import docker_container; print os.path.dirname(docker_container.__file__);' | python -) && \
+    rm $PYTHON_LIB_PATH/docker_container.pyc && \
+    wget -O $PYTHON_LIB_PATH/docker_container.py \
+      https://raw.githubusercontent.com/ansible/ansible-modules-core/de0122fdaf5975cf2df87fc36b059c74032396e6/cloud/docker/docker_container.py
