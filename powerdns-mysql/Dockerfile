@@ -25,7 +25,7 @@ RUN [ -n "$APT_CACHER_NG" ] && \
       > /etc/apt/sources.list.d/pdns-$(lsb_release -cs).list && \
     mv /build-files/pdns-pin /etc/apt/preferences.d/pdns && \
     apt-get update && \
-    apt-get install -y pdns-server pdns-backend-mysql && \
+    apt-get install -y pdns-server pdns-backend-mysql mysql && \
     mv /build-files/pdns.mysql.conf /etc/powerdns/pdns.d/pdns.mysql.conf && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/11proxy /build-files \
